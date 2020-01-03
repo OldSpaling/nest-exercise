@@ -1,0 +1,52 @@
+<div>
+    <div class="btn-container">
+        <button nz-button nzType="primary"><i nz-icon nzType="plus"></i>Add</button>
+    </div>
+    <nz-table #nestedTable [nzData]="listOfParentData" [nzPageSize]="10">
+        <thead>
+            <tr>
+                <th nzShowExpand></th>
+                <th>Group</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+                <tr>
+                    <td nzShowExpand [(nzExpand)]="data.expand"></td>
+                    <td>{{ data.name }}</td>
+                    <td colspan="2" style="text-align: center;">
+                        <button nz-button nzType="default"><i nz-icon nzType="plus"></i></button>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <button nz-button nzType="default"><i nz-icon nzType="edit"></i></button>
+                    </td>
+                </tr>
+                <tr [nzExpand]="data.expand">
+                    <td></td>
+                    <td colspan="7">
+                        <nz-table #innerTable [nzData]="listOfChildrenData" nzSize="middle" [nzPageSize]="10">
+                            <thead>
+                                <tr>
+                                    <th>Route</th>
+                                    <th>Protocol</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+        <tbody>
+            <tr *ngFor="let data of innerTable.data">
+                <td>{{ data.date }}</td>
+                <td>{{ data.name }}</td>
+                <td>
+                    <span class="table-operation">
+                        <button nz-button nzType="default"><i nz-icon nzType="delete"></i></button>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+    </td>
+    </tr>
+    </ng-template>
+    </tbody>
+    </nz-table>
+</div>
