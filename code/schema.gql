@@ -1,0 +1,111 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""author"""
+type Author {
+  a: String
+  birthTime: Date
+  firstName: String
+  id: Int!
+  lastName: String
+  people: People
+  posts: [Post!]!
+}
+
+type AuthorEdge {
+  cusor: String!
+  node: Author!
+}
+
+input CompositionUpdateUserInput {
+  firstName: String
+  password: String
+}
+
+type CompositionUpdateUserResult {
+  firstName: String
+  lastName: String
+  test: String
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+enum EnumAllowColor {
+  BLUE
+  GREEN
+  RED
+}
+
+type EnumModelTest {
+  """color des"""
+  color1: EnumAllowColor
+  name: String
+}
+
+type Human implements ICharacter {
+  id: ID!
+  name: String!
+}
+
+interface ICharacter {
+  id: ID!
+  name: String!
+}
+
+type Mutation {
+  addComment(comment: UpvotePostInput!, postId: Int!): Post!
+  testMapType(model: CompositionUpdateUserInput!): CompositionUpdateUserResult!
+  upvotePost(upvotePostData: UpvotePostInput!): Post!
+}
+
+"""PageinatedAuthor"""
+type PaginatedAuthor {
+  edges: [AuthorEdge!]
+  hasNextPage: Boolean!
+  nodes: [Author!]
+  totalCount: Int!
+}
+
+"""people scalar"""
+scalar People
+
+type Post {
+  id: Int!
+  title: String!
+  votes: Int
+}
+
+type Query {
+  author(birthTime: Date, firstName: String, id: ID!, lastName: String, people: People): Author!
+  authors(firstName: String, id: ID, lastName: String, limit: Int = 10, offset: Int = 0): [Author!]!
+  pagedAuthors(firstName: String, id: ID, lastName: String, limit: Int = 10, offset: Int = 0): PaginatedAuthor!
+  queryIterface(birthTime: Date, firstName: String, id: ID!, lastName: String, people: People): Human!
+  search: [ResultUnion!]!
+  testEnum(
+    """color des"""
+    color1: EnumAllowColor
+    name: String
+  ): [EnumModelTest!]!
+}
+
+union ResultUnion = UnionAuthor | UnionBook
+
+type Subscription {
+  commentAdded1(title: String): Post!
+}
+
+type UnionAuthor {
+  name: String
+}
+
+type UnionBook {
+  title: String
+}
+
+input UpvotePostInput {
+  postId: Int!
+  title: String
+  votes: Int
+}
