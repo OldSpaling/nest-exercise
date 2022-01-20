@@ -37,7 +37,7 @@ ruleTester.run("service-controller-property-readonly", rule, {
         output: `
         export class TestService {
             readonly test2: string;
-            constructor(private test1: string) { }
+            constructor(private readonly test1: string) { }
         }
         `
     }]
