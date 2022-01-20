@@ -1,0 +1,14 @@
+{
+    "name": "eslint-plugin-my-custom-rule",
+    "description": "Our custom ESLint plugin,name must be eslint-plugin-{your name}",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "files": [
+        "dist",
+        "package.json"
+    ],
+    "peerDependencies": {
+        "@typescript-eslint/parser": "^5.0.0",
+        "eslint": "^8.0.0"
+    }
+}
