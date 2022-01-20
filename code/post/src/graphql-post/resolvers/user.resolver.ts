@@ -12,4 +12,8 @@ export class UserResolver {
     public posts(@Parent() user: User) {
         return this.postService.forAuthor(user.id);
     }
+    @ResolveField("test",(of) => String)
+    getTest(@Parent() user: User) {
+        return "test";
+    }
 }
