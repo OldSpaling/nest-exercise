@@ -17,7 +17,6 @@ const rule = createRule({
             'missing-param-property-readonly-fixed': 'add readonly for "{{name}}" param property',
         },
         type: 'problem',
-        fixable: "code",
         hasSuggestions: true,
         schema: {},
     },
@@ -25,19 +24,6 @@ const rule = createRule({
     create: function (context) {
         //ts ast https://typescript-eslint.io/play/#ts=4.5.2&sourceType=module&showAST=es&code=KYDwDg9gTgLgBAYwDYEMDOa4BVhpgZWCgDcBLBYAbwFgAoOBuGXGAJgC48pSA7AcwDcdRogg8uAVwQxoACjDdiKZkxYBGTjG78AlJQC+dfUA
         return {
-            // PropertyDefinition(node) {
-            //     console.log(node);
-            //     if (!node.readonly) {
-            //         context.report({
-            //             node: node,
-            //             messageId: "missing-property-readonly",
-            //         });
-            //     }
-
-            // },
-            // MethodDefinition(node) {
-
-            // },
             'ClassDeclaration[id.name=/Service/] PropertyDefinition'(
                 node: TSESTree.PropertyDefinition,
             ) {
